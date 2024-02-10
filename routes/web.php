@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\ProdakController;
 use App\Http\Controllers\ProfileController;
 
 /*
@@ -37,6 +39,25 @@ Route::middleware('auth')->group(function () {
     Route::get('/rekap', [PagesController::class, 'rekap'])->name('admin.rekap');
 });
 
+//category
+Route::middleware('auth')->group(function () {
+    Route::get('/category/tambah', [PagesController::class, 'category_tambah']);
+    Route::post('/category/tambah', [CategoryController::class, 'create'])->name('category.store');
+    Route::delete('/category/destroy/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
+    Route::get('/category/edit/{id}', [CategoryController::class, 'edit'])->name('category.edit');
+    Route::put('/category/{id}', [CategoryController::class, 'update']);
+    Route::post('/tmp-upload', [CategoryController::class, 'tmpUpload']);
+    
+});
+
+// prodak
+
+Route::middleware('auth')->group(function () {
+    Route::get('/barang/tambah', [PagesController::class, 'barang_tambah']);
+    Route::post('/barang/tambah', [ProdakController::class, 'store'])->name('prodak.store');
+    
+    
+});
 
 //user management
 Route::middleware('auth')->group(function () {

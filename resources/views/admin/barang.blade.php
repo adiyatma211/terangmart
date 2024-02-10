@@ -5,6 +5,9 @@
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title">Barang</h4>
+                <a  href="barang/tambah" class="btn btn-primary">
+                    Tambah
+                </a>
             </div>
             <div class="card-content">
                 <!-- table bordered -->
@@ -13,10 +16,10 @@
                         <thead>
                             <tr>
                                 <th>NAME</th>
-                                <th>RATE</th>
-                                <th>SKILL</th>
-                                <th>TYPE</th>
-                                <th>LOCATION</th>
+                                <th>Gambar</th>
+                                <th>Keterangan</th>
+                                <th>Quantiti</th>
+                                <th>Harga</th>
                                 <th>ACTION</th>
                             </tr>
                         </thead>
@@ -27,15 +30,17 @@
                                 <td class="text-bold-500">UI/UX</td>
                                 <td>Remote</td>
                                 <td>Austin,Taxes</td>
-                                <td><a href="#"><i
-                                            class="badge-circle badge-circle-light-secondary font-medium-1"
-                                            data-feather="mail"></i></a>
-                                            <a href="#"><i
-                                                class="badge-circle badge-circle-light-secondary font-medium-1"
-                                                data-feather="mail"></i></a>
-                                                <a href="#"><i
-                                                    class="badge-circle badge-circle-light-secondary font-medium-1"
-                                                    data-feather="mail"></i></a></td>
+                                <td><a href="/category/edit/" type="button" class="btn btn-primary">
+                                    Edit
+                                </a>
+                                <a href="#" onclick="event.preventDefault(); if(confirm('Apakah Anda yakin ingin menghapus?')) { document.getElementById('delete-form-').submit(); }" type="button" class="btn btn-danger">
+                                    Delete
+                                </a>
+                                {{-- Form untuk delete --}}
+                                <form id="delete-form-" action="/category/destroy/" method="POST" style="display: none;">
+                                    @csrf
+                                    @method('DELETE')
+                                </form>
                             </tr>
                             
                         </tbody>
