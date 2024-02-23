@@ -26,6 +26,7 @@
                             <div class="form-group has-icon-left">
                                 <input name="image" type="file" id="image" class="filepond" accept="image/*" />
                             </div>
+                            <input type="hidden" name='filename' id='filename'>
                         </div>  
                         <div class="col-12 d-flex justify-content-end">
                             <button type="submit" class="btn btn-primary me-1 mb-1">Submit</button>
@@ -49,10 +50,16 @@
 
         FilePond.setOptions({
             server: {
-            process: '/tmp-upload',
+                url:'/tmp-upload',
+                process: {
+                    onload: (response) => {
+                        document.getElementById('filename').value=response;
+                    }
+                },
             headers:{
                 'x-csrf-token':'{{ csrf_token() }}'
-            }
+            },
+            
         
         },
     });

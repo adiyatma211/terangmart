@@ -45,35 +45,29 @@ class CategoryController extends Controller
         //     return redirect()->back()->withErrors(['image' => 'Gambar tidak terunggah.'])->withInput();
         // }
 
-        $tmp_file = temporaryFile::where('folder', $request->image)->first();
+        // dd($request->filename);
 
-        if ($tmp_file) {
-            Storage::copy('post/tmp/'.$tmp_file->folder.'/'.$tmp_file->file, 'post/'.$tmp_file->folder . '/' .$tmp_file->file);
+        category::create([
+            'name' => $request->name,
+            'image' => $request->filename,
+        ]);
+       
+        return redirect('/category')->with(['success' => 'Data berhasil ditambahkan']);
 
-            category::create([
-                'name' => $request->name,
-                'image' => $tmp_file->folder. '/' .$tmp_file->imageName,
-            ]);
-            Storage::deleteDirectory('post/tmp/'.$tmp_file->folder);
-            $tmp_file->delete();
-            return redirect('/category')->with(['success' => 'Data berhasil ditambahkan']);
-        } else {
-            return 'error';
-        }
+        // if ($request->filename) {
+
+        // } else {
+        //     return 'error';
+        // }
         
     }
     public function tmpUpload(Request $request)
     {
         if ($request->hasFile('image')) {
-        $image = $request->file('image');
-        $imageName = $image->getClientOriginalName();
-        $folder = uniqid('post', true);
-        $image->storeAs('post/tmp/'.$folder, $imageName);
-        temporaryFile::create([
-            'folder' => $folder,
-            'file' => $imageName,
-        ]);
-        return $folder;
+            $image = $request->file('image');
+            $imageName = $image->getClientOriginalName();
+            $image->move(public_path('post/category'), $imageName);
+            return $imageName;
         }
         return '';
     }

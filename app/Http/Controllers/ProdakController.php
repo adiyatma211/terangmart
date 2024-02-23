@@ -35,11 +35,11 @@ class ProdakController extends Controller
     {
     
         prodak::create([
+            'id_prodak' => $request->id_prodak,
             'name' => $request->name,
-            'category_id' => $request->category_id,
-            'price' => $request->price,
-            'stock' => $request->stock,
-            'description' => $request->description,
+            'deskripsi' => $request->deskripsi,
+            'harga' => $request->harga,
+            'stok' => $request->stok,
         ]);     
 
         return redirect('/barang')->with('success', 'Data berhasil ditambahkan');
@@ -78,16 +78,5 @@ class ProdakController extends Controller
         //
     }
 
-    // public function tambah(Request $request)
-    // {
-    //     prodak::create([
-    //         'name' => $request->name,
-    //         'category_id' => $request->category_id,
-    //         'price' => $request->price,
-    //         'stock' => $request->stock,
-    //         'description' => $request->description,
-    //     ]);     
-    //     return redirect('/barang')->with('success', 'Data berhasil ditambahkan');
-
-    // }
+    
 }

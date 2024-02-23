@@ -54,7 +54,7 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/barang/tambah', [PagesController::class, 'barang_tambah']);
-    Route::post('/barang/tambah', [ProdakController::class, 'store'])->name('prodak.store');
+    Route::post('/barang/tambah', [ProdakController::class, 'store'])->name('barang.store');
     
     
 });

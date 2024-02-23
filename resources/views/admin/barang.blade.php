@@ -17,6 +17,7 @@
                             <tr>
                                 <th>NAME</th>
                                 <th>Gambar</th>
+                                <th>Category</th>
                                 <th>Keterangan</th>
                                 <th>Quantiti</th>
                                 <th>Harga</th>
@@ -24,12 +25,14 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($barang as $a)
                             <tr>
-                                <td class="text-bold-500">Michael Right</td>
-                                <td>$15/hr</td>
-                                <td class="text-bold-500">UI/UX</td>
-                                <td>Remote</td>
-                                <td>Austin,Taxes</td>
+                                <td class="text-bold-500">{{$a->name}}</td>
+                                <td>{{$a->image}}</td>
+                                <td>{{$a->category->name}}</td>
+                                <td class="text-bold-500">{{$a->deskripsi}}</td>
+                                <td>{{$a->stok}}</td>
+                                <td>{{$a->harga}}</td>
                                 <td><a href="/category/edit/" type="button" class="btn btn-primary">
                                     Edit
                                 </a>
@@ -42,7 +45,7 @@
                                     @method('DELETE')
                                 </form>
                             </tr>
-                            
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

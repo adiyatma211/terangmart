@@ -14,8 +14,7 @@
         type="image/png">
         <link
         href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
-        rel="stylesheet"
-    />
+        rel="stylesheet">
 
     <link href="{{asset('filepond/filepond.css')}}" rel="stylesheet" />
     {{-- <link href="{{asset('filepond/filepond-plugin-image-preview.css')}}" rel="stylesheet" /> --}}

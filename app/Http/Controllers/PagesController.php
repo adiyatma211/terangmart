@@ -40,7 +40,10 @@ class PagesController extends Controller
     // category_end
     public function barang()
     {
-        $barang = prodak::all();
+        $barang = Prodak::with('category')->get();
+        // dd($barang);
+
+        
         return view('admin.barang', ['barang' => $barang]);   
     }
 

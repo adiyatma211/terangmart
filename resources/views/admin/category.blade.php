@@ -24,9 +24,11 @@
                                 @foreach ($categories as $a)
                                     <tr>
                                         <td class="text-bold-500">{{ $a->name }}</td>
+
+                                       
                                         @if ($a->image)
                                         <td>
-                                            <img src="{{$a->image }}" ></td>
+                                            <img src="{{asset('post/category/'.$a->image)}}" ></td>
                                         @else
                                             <td>Belum ada gambar</td>
                                         @endif
